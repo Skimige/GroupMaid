@@ -1,0 +1,11 @@
+# Acquire credentials from https://my.telegram.org
+[pyrogram]
+api_id = 123456
+api_hash = 123456abcdef123456abcdef
+
+[proxy]
+enabled = True
+hostname = 127.0.0.1
+port = 7890
+username =
+password =

@@ -1,7 +1,8 @@
-# PyroBot
+# Bot
 *.session
 *.session-journal
 *.ini
+bot/conf/config.json
 
 # VScode
 .vscode/

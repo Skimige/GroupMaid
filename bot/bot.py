@@ -14,7 +14,7 @@ class Bot(Client):
         plugins = dict(root=f"{name}/plugins")
         super().__init__(
             session_name=name,
-            app_version=f"GroupUnpinBot v{__version__}",
+            app_version=f"GroupMaid v{__version__}",
             workdir=".",
             config_file=config_file,
             workers=8,

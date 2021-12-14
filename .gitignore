@@ -2,7 +2,7 @@
 *.session
 *.session-journal
 *.ini
-bot/conf/config.json
+bot/conf/
 
 # VScode
 .vscode/

@@ -5,13 +5,13 @@ from pyrogram.errors import FloodWait
 
 from ..bot import Bot
 from ..utils.helpers import logger_chat
-from .setting import config
+from .setting import config_groups
 
 
 @Bot.on_message(filters.linked_channel | filters.pinned_message)
 async def unpin(app: Bot, message: Message):
-    if str(message.chat.id) in config['groups']:
-        if config['groups'][str(message.chat.id)]['unpin']:
+    if str(message.chat.id) in config_groups:
+        if config_groups[str(message.chat.id)]['unpin']:
             while True:
                 try:
                     if message.service:
@@ -31,8 +31,8 @@ async def unpin(app: Bot, message: Message):
 
 @Bot.on_message(filters.new_chat_members)
 async def kick(app: Bot, message: Message):
-    if str(message.chat.id) in config['groups']:
-        if config['groups'][str(message.chat.id)]['kick']:
+    if str(message.chat.id) in config_groups:
+        if config_groups[str(message.chat.id)]['kick']:
             while True:
                 try:
                     srv_msg = await app.kick_chat_member(
@@ -52,8 +52,8 @@ async def kick(app: Bot, message: Message):
 
 @Bot.on_message(filters.group & ~ filters.service)
 async def ban_channel_message(bot: Bot, message: Message) -> None:
-    if str(message.chat.id) in config['groups']:
-        if config['groups'][str(message.chat.id)]['ban_channel_message']:
+    if str(message.chat.id) in config_groups:
+        if config_groups[str(message.chat.id)]['ban_channel_message']:
             while True:
                 try:
                     white_list = [message.chat.id]

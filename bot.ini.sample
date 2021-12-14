@@ -9,3 +9,6 @@ hostname = 127.0.0.1
 port = 7890
 username =
 password =
+
+[GroupMaid]
+admin = 0

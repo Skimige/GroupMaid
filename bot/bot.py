@@ -11,6 +11,13 @@ class Bot(Client):
         config = ConfigParser()
         config.read(config_file)
 
+        if config['GroupMaid'].getint('admin') == 0:
+            import sys
+            print('Bot Admin User is not configured!\n'
+                  'Please edit "bot.ini" - [GroupMaid] section, '
+                  'and set "admin" to your Telegram ID, then start the bot again.')
+            sys.exit(1)
+
         plugins = dict(root=f"{name}/plugins")
         super().__init__(
             session_name=name,

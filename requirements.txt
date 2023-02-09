@@ -1,2 +1,4 @@
-git+git://github.com/pyrogram/pyrogram.git@9c670841706e4ec59ada60a5b78d277e35979f76#egg=Pyrogram
-TgCrypto~=1.2.2
+pyaes==1.6.1
+pyrogram==2.0.97
+pysocks==1.7.1
+tgcrypto==1.2.5

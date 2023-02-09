@@ -7,7 +7,7 @@ def logger_chat(function: str, message: Message, plugin_message: str = 'triggere
         time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         "CHAT".ljust(6),
         str(message.chat.id).rjust(14),
-        str(message.message_id).rjust(8),
+        str(message.id).rjust(8),
         function,
         plugin_message)
     if is_print:
@@ -31,7 +31,7 @@ def logger_plugins(function: str, message: Message, plugin_message: str = 'trigg
         time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         "PLUGIN".ljust(6),
         str(message.chat.id).rjust(14),
-        str(message.message_id).rjust(8),
+        str(message.id).rjust(8),
         str(message.from_user.id).rjust(10),
         function,
         plugin_message)

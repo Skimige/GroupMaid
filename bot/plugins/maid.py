@@ -1,3 +1,4 @@
+import datetime
 import time
 from pyrogram import filters
 from pyrogram.types import Message
@@ -16,17 +17,14 @@ async def unpin(app: Bot, message: Message):
                 try:
                     if message.service:
                         await message.delete()
-                        logger_chat('unpin', message, f'service message id {message.message_id} removed')
+                        logger_chat('unpin', message, f'service message id {message.id} removed')
                     else:
-                        await app.unpin_chat_message(
-                            message.chat.id,
-                            message.message_id
-                        )
-                        logger_chat('unpin', message, f'linked channel message id {message.message_id} unpinned')
+                        await app.unpin_chat_message(message.chat.id, message.id)
+                        logger_chat('unpin', message, f'linked channel message id {message.id} unpinned')
                     break
                 except FloodWait as e:
-                    logger_chat('unpin', message, f'FloodWait {message.message_id} for {e.x}s')
-                    time.sleep(e.x)
+                    logger_chat('unpin', message, f'FloodWait {message.id} for {e.value}s')
+                    time.sleep(e.value)
 
 
 @Bot.on_message(filters.new_chat_members)
@@ -35,10 +33,10 @@ async def kick(app: Bot, message: Message):
         if config_groups[str(message.chat.id)]['kick']:
             while True:
                 try:
-                    srv_msg = await app.kick_chat_member(
+                    srv_msg = await app.ban_chat_member(
                         message.chat.id,
                         message.from_user.id,
-                        until_date=int(time.time()) + 60
+                        until_date=datetime.datetime.now() + datetime.timedelta(seconds=60)
                     )
                     await message.delete()
                     await srv_msg.delete()
@@ -46,8 +44,8 @@ async def kick(app: Bot, message: Message):
                                 f'user {message.from_user.id} kicked and deleted service messages')
                     break
                 except FloodWait as e:
-                    logger_chat('kick', message, f'FloodWait {message.message_id} for {e.x}s')
-                    time.sleep(e.x)
+                    logger_chat('kick', message, f'FloodWait {message.id} for {e.value}s')
+                    time.sleep(e.value)
 
 
 @Bot.on_message(filters.group & ~ filters.service)
@@ -63,10 +61,10 @@ async def ban_channel_message(bot: Bot, message: Message) -> None:
                     # allow: linked_channel, anonymous_admin
                     if message.sender_chat and message.sender_chat.id not in white_list:
                         await message.delete()
-                        await bot.kick_chat_member(message.chat.id, message.sender_chat.id)
+                        await bot.ban_chat_member(message.chat.id, message.sender_chat.id)
                         logger_chat('ban_channel_message', message,
                                     f'channel {message.sender_chat.id} banned')
                     break
                 except FloodWait as e:
-                    logger_chat('ban_channel_message', message, f'FloodWait {message.message_id} for {e.x}s')
-                    time.sleep(e.x)
+                    logger_chat('ban_channel_message', message, f'FloodWait {message.id} for {e.value}s')
+                    time.sleep(e.value)

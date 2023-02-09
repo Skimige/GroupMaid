@@ -2,6 +2,7 @@
 *.session
 *.session-journal
 *.ini
+!*.example.ini
 bot/conf/
 
 # VScode

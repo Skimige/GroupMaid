@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "groupmaid"
+version = "0.0.2"
+description = "A Telegram group manage bot"
+authors = ["Skimige <me@xyx.moe>"]
+license = "GPL-3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Pyrogram = "^2.0.97"
+TgCrypto = "^1.2.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

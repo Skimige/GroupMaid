@@ -27,9 +27,9 @@ TODO：
 
 ## 使用
 
-- *(Optional, but strongly recommended)* 创建 `venv` 并激活
+- *(Optional, but strongly recommended)* 创建 `venv` 并激活，如有 Poetry 可以直接 `poetry install`
 - `pip install -r requirements.txt`
-- 复制一份 `bot.ini.sample` 并重命名为 `bot.ini`，填入 [Telegram API ID & Hash](https://my.telegram.org) 和管理员用户 ID
+- 复制一份 `bot.example.ini` 并重命名为 `bot.ini`，填入 [Telegram API ID & Hash](https://my.telegram.org) 和管理员用户 ID
 - 在 [@BotFather](https://t.me/BotFather) 处创建 Bot，获取 API Token
 - `python -m bot` 并使用 API Token 登录
 - 在与 Bot 的聊天中配置 Bot
